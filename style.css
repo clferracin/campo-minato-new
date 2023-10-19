@@ -107,7 +107,7 @@ h1 {
 	background-color: #FFB40F
 }
 
-.cell:hover {
+.cell-not-clicked:hover {
 	background-color: #cc7a00;
 }
 
@@ -129,7 +129,7 @@ h1 {
 
 .cell-clicked,
 .cell-bomb {
-	cursor: not-allowed;
+	cursor: grab;
 }
 
 /* Schermata di fine gioco */

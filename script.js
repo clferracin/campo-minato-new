@@ -22,7 +22,23 @@ while (bombsList.length < totalBombs) {
   if (!bombsList.includes(number)) bombsList.push(number);
 }
 
-console.log(bombsList);
+// Audio dello gioco
+var bombAudio = new Audio("/audio/bomb.wav")
+var grassSound = new Audio("./audio/grass.wav")
+var theme = new Audio("/audio/CESAR6.mp3")
+theme.play()
+
+if (theme.duration > 0 && !theme.paused) {
+
+  //Its playing...do your job
+
+} else {
+
+  //Not playing...maybe paused, stopped or never played.
+  theme.play()
+}
+
+
 
 /* -----------------------
 GRIGLIA E LOGICA DI GIOCO
@@ -34,6 +50,7 @@ for (let i = 1; i <= totalCells; i++) {
   // Creo un elemento e gli do la classe 'cell'
   const cell = document.createElement('div');
   cell.classList.add('cell');
+  cell.classList.add('cell-not-clicked');
 
   // cell.innerText = i;
   isCellEven = i % 2 === 0;
@@ -57,9 +74,13 @@ for (let i = 1; i <= totalCells; i++) {
       // Se è una bomba....
       cell.classList.add('cell-bomb');
       endGame(false);
+      bombAudio.play()
+      theme.pause()
     } else {
       // Se non lo è...
       cell.classList.add('cell-clicked');
+      cell.classList.remove('cell-not-clicked')
+      grassSound.play()
       updateScore();
     }
   });
